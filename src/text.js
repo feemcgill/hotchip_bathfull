@@ -8,7 +8,6 @@ export default class Text extends Sprite {
   constructor(callback) {
     super()
 
-
     this.tex1 = new PIXI.Texture.fromImage(loader.resources.text_1.url)
     this.tex2 = new PIXI.Texture.fromImage(loader.resources.text_2.url)
     this.sprite1 = new PIXI.Sprite(this.tex1)
@@ -18,12 +17,12 @@ export default class Text extends Sprite {
 
     this.addChild(this.sprite1)
     this.addChild(this.sprite2)
-    //this.anchor.set(0.5)
+
     this.size()
   }
 
   move(x, y) {
-    const n = 2.03
+    const n = .05
     const moverX = map(x, 0, app.renderer.width, n, -n)
     const moverY = map(y, 0, app.renderer.height, n, -n)
     this.sprite1.skew.x = moverX
