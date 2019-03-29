@@ -4,9 +4,7 @@ import {debounce, getWindowSize, map, backgroundSize} from './helpers.js';
 import Splotch from './splotch'
 import Bg from './bg'
 import Text from './text'
-import texUrl from './../assets/img/bg.jpg'
-import text_1 from './../assets/img/txt/txt_1_noband_blk.png'
-import text_2 from './../assets/img/txt/txt_2_noband_blk.png'
+import loader from './loader'
 
 //Create the renderer
 const app = new PIXI.Application({
@@ -18,22 +16,10 @@ const app = new PIXI.Application({
 
 document.body.appendChild(app.view);
 
-
-const loader = new PIXI.loaders.Loader()
-
-loader
-.add('bg', texUrl)
-.add('text_1', text_1)
-.add('text_2', text_2)
-.add('splotch','./../assets/vid/splotchy.mp4')
-
-loader.on('progress',function (res) {
-})
-loader.on('complete',function (loader,res) {
+loader.load((loader, resources) => {
   initSite()
 });
-loader.load((loader, resources) => {
-});
+
 
 let splotch
 let bg
@@ -88,6 +74,6 @@ window.addEventListener("resize",debounce(function(e){
 }));  
 
 
-export {app, loader}
+export {app}
 
 

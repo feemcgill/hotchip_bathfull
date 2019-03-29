@@ -2,7 +2,8 @@ import { Graphics, Sprite, Container} from 'pixi.js'
 
 import {TweenMax} from "gsap/TweenMax"
 import {backgroundSize, map, backgroundContain} from './helpers'
-import {app, loader} from './index'
+import {app} from './index'
+import loader from './loader'
 
 export default class Splotch extends Sprite {
   constructor(callback) {

@@ -1,7 +1,8 @@
 import {Sprite} from 'pixi.js'
 import {TweenMax} from "gsap/TweenMax"
 import {backgroundContain, map} from './helpers'
-import {app, loader} from './index'
+import {app} from './index'
+import loader from './loader'
 
 export default class Text extends Sprite {
   constructor(callback) {
