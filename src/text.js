@@ -17,7 +17,8 @@ export default class Text extends Sprite {
 
     this.addChild(this.sprite1)
     this.addChild(this.sprite2)
-
+    this.scale.set(0)
+    this.anchor.set(0)
     this.size()
   }
 
@@ -30,16 +31,28 @@ export default class Text extends Sprite {
     this.sprite2.skew.x = moverY
     this.sprite2.skew.y = moverX
   }
+
+  in() {
+    TweenMax.to(this.scale, 7, {x: 1, y:1, delay: 3})
+  }
+
+  out() {
+    TweenMax.to(this.scale, .3, {x: 0, y:0})
+  }
+
   size() {
     const sizer = backgroundContain(app.renderer.width * 0.8, app.renderer.height * 0.8, this.tex1.baseTexture.width, this.tex1.baseTexture.height)
     this.sprite1.scale.set(sizer.scale)
     this.sprite2.scale.set(sizer.scale)
 
-    this.sprite1.x = app.renderer.width / 2
-    this.sprite1.y = app.renderer.height / 2
+    // this.sprite1.x = app.renderer.width / 2
+    // this.sprite1.y = app.renderer.height / 2
 
-    this.sprite2.x = app.renderer.width / 2
-    this.sprite2.y = app.renderer.height / 2
+    // this.sprite2.x = app.renderer.width / 2
+    // this.sprite2.y = app.renderer.height / 2
+
+    this.x = app.renderer.width / 2
+    this.y = app.renderer.height / 2
   }
 }
 

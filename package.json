@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "gsap": "^2.0.2",
+    "gyronorm": "^2.0.6",
     "matter-js": "^0.14.2",
     "pixi.js": "^4.8.5"
   }

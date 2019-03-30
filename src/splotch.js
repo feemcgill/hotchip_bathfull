@@ -15,27 +15,31 @@ export default class Splotch extends Sprite {
     this.vid.autoPlay = false
     this.anchor.set(0.5)
     this.size()
-    this.interactive = true
-    this
-      .on('mousedown', this.advanceVid)
-      .on('mouseup', this.retractVid)
 
-    // this.white = new Graphics()
-    // this.white.beginFill(0xFFFFFF)
-    // this.white.drawRect(0,0, 200, 200)
-    // this.addChild(this.white)
   }
 
-  advanceVid() {
-   //this.vid.source.currentTime = 0
+  init(){
+    this.vid.source.play()
+    console.log('splotch init')
+  }
+  advance(callback) {
+   this.vid.source.currentTime = 0
    this.vid.source.playbackRate = 2
    this.vid.source.play()
+   this.vid.source.onended = function() {
+     callback()
+   }
   }
 
-  retractVid() {
+  retract() {
     //https://codepen.io/blackgghost/pen/qQmjKJ?editors=1010
-    //this.vid.source.pause()
+    this.vid.source.pause()
   }
+
+  out() {
+    TweenMax.to(this,.3,{alpha:0})
+  }
+
   size() {
     const vidSize = backgroundSize(app.renderer.width, app.renderer.height, 1280, 720)
     this.scale.set(vidSize.scale)
