@@ -127,7 +127,7 @@ loader.load((loader, resources) => {
       // data.dm.y		( devicemotion event acceleration y value )
       // data.dm.z		( devicemotion event acceleration z value )
       const shakeVibe = Math.max(data.dm.x,data.dm.y,data.dm.z)
-      debugDiv.innerHTML = "My new text!";
+      debugDiv.innerHTML = shakeVibe;
 
       // data.dm.gx		( devicemotion event accelerationIncludingGravity x value )
       // data.dm.gy		( devicemotion event accelerationIncludingGravity y value )
