@@ -41,6 +41,11 @@ loader.load((loader, resources) => {
       initSite()
       startTrans()
     })
+    .on('touchstart', () => {
+      console.log('CLICK')
+      initSite()
+      startTrans()      
+    })
     //.on('mouseup', onMouseUp)
 
   // let lastmousex=-1 
