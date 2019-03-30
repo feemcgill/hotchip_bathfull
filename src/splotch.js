@@ -15,7 +15,6 @@ export default class Splotch extends Sprite {
     this.vid.autoPlay = false
     this.vid.source.autoplay = false
     this.vid.source.muted = true
-    console.log(this.vid, 'TJHE VID')
     this.anchor.set(0.5)
     this.size()
 
@@ -27,7 +26,7 @@ export default class Splotch extends Sprite {
   }
   advance(callback) {
    this.vid.source.currentTime = 0
-   this.vid.source.playbackRate = 1
+   this.vid.source.playbackRate = 2
    this.vid.source.play()
    this.vid.source.onended = function() {
      callback()

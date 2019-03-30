@@ -25,10 +25,9 @@ loader.load((loader, resources) => {
   app.stage.addChild(theBg)
 
   app.stage.addChild(splotch)
-  //app.stage.addChild(cover)
+  app.stage.addChild(cover)
 
-  //theBg.mask = splotch
-  splotch.alpha = 0.2 
+  theBg.mask = splotch
 
   app.stage.interactive = true;
   app.stage
