@@ -39,12 +39,12 @@ loader.load((loader, resources) => {
     .on('click', () => {
       console.log('CLICK')
       initSite()
-      startTrans()
+      //startTrans()
     })
     .on('touchstart', () => {
       console.log('CLICK')
       initSite()
-      startTrans()      
+      //startTrans()      
     })
     //.on('mouseup', onMouseUp)
 
@@ -69,14 +69,14 @@ loader.load((loader, resources) => {
     // lastmousex = x;
     // lastmousey = y;
 
-    // if (!state.transStarted) {
-    //     startTrans()
-    // }
-    // clearTimeout(timeout);
-    // timeout = setTimeout(function(){
-    //   console.log('MOUS IS IDLE')
-    //   retractTrans()
-    // }, 100);
+    if (!state.transStarted) {
+        startTrans()
+    }
+    clearTimeout(timeout);
+    timeout = setTimeout(function(){
+      console.log('MOUS IS IDLE')
+      retractTrans()
+    }, 100);
 
 
 
