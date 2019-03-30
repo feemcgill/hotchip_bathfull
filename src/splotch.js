@@ -24,7 +24,8 @@ export default class Splotch extends Sprite {
   }
   advance(callback) {
    this.vid.source.currentTime = 0
-   this.vid.source.playbackRate = 2
+   this.vid.source.playbackRate = 1
+   alert('play')
    this.vid.source.play()
    this.vid.source.onended = function() {
      callback()
