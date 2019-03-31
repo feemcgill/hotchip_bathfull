@@ -112,7 +112,7 @@ loader.load((loader, resources) => {
   }
   
 
-  const gn = new GyroNorm({frequency: 100});
+  const gn = new GyroNorm({frequency: 300});
   const debugDiv = document.getElementById('debug')
   gn.init().then(function(){
     gn.start(function(data){
