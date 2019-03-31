@@ -112,7 +112,7 @@ loader.load((loader, resources) => {
   }
   
 
-  const gn = new GyroNorm();
+  const gn = new GyroNorm({frequency: 100});
   const debugDiv = document.getElementById('debug')
   gn.init().then(function(){
     gn.start(function(data){
@@ -127,7 +127,7 @@ loader.load((loader, resources) => {
       // data.dm.y		( devicemotion event acceleration y value )
       // data.dm.z		( devicemotion event acceleration z value )
       const shakeVibe = Math.max(data.dm.x,data.dm.y,data.dm.z)
-      debugDiv.innerHTML = shakeVibe;
+      debugDiv.innerHTML = shakeVibe + '<br />alpha: ' + data.do.alpha + '<br />beta: ' + data.do.beta + '<br />gamma: ' + data.do.gamma;
 
       // data.dm.gx		( devicemotion event accelerationIncludingGravity x value )
       // data.dm.gy		( devicemotion event accelerationIncludingGravity y value )
