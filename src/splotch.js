@@ -22,8 +22,8 @@ export default class Splotch extends Sprite {
 
   init(){
     this.vid.source.play()
-    console.log('splotch init')
   }
+  
   advance(callback) {
    this.vid.source.currentTime = 0
    this.vid.source.playbackRate = 2

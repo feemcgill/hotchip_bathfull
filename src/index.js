@@ -7,7 +7,6 @@ import Text from './text'
 import loader from './loader'
 import Cover from './cover'
 import './vendor/gyro'
-// import { GyroNorm } from 'gyronorm';
 import GyroNorm from 'gyronorm';
 
 const introContent = document.getElementById('intro-content')
@@ -17,7 +16,6 @@ loader.load((loader, resources) => {
   const state = {
     transitioned: false,
     transStarted: false,
-    vidInit: false,
     instructionsFollowed: false
   }
   const theBg = new PIXI.Container()
@@ -45,83 +43,30 @@ loader.load((loader, resources) => {
     // .on('mousedown', initSite)
     .on('click', () => {
       if (!state.transStarted) {
-        initSite()
         startTrans()
+        alert('click it')
       }
     })
-    .on('touchstart', () => {
-      if (!state.transStarted) {
-        initSite()
-        startTrans()      
-      }
-    })
+    // .on('touchstart', () => {
+    //   if (!state.transStarted) {
+    //     startTrans()      
+    //   }
+    // })
     //.on('mouseup', onMouseUp)
 
-  // let lastmousex=-1 
-  // let lastmousey=-1
-  // let mousetravel = 0
-
-  let timeout = null
-  function initSite() {
-    if (!state.vidInit) {
-      //introContent.innerHTML = 'move your mouse to begin';
-     
-      introContent.parentNode.removeChild(introContent);
-      splotch.init()
-      state.vidInit = true
-    }
-  }
-  function onPointerMove(eventData) {
-    var x = eventData.data.global.x;
-    var y = eventData.data.global.y;
-    text.move(x,y)
-    bg.move(x,y)
-
-    // mousetravel = Math.round(Math.max( Math.abs(x-lastmousex), Math.abs(y-lastmousey) ))
-    // lastmousex = x;
-    // lastmousey = y;
-
-    // if (!state.transStarted) {
-    //     startTrans()
-    // }
-    // if (!state.instructionsFollowed && state.vidInit) {
-    //   state.instructionsFollowed = true
-    //   setTimeout(() => {
-    //     introContent.innerHTML = 'ok';
-    //     introContent.parentNode.removeChild(introContent);
-    //   }, 1200);
-    // }
-
-    // clearTimeout(timeout);
-    // timeout = setTimeout(function(){
-    //   console.log('MOUS IS IDLE')
-    //   retractTrans()
-    // }, 100);
 
 
-
-  } 
-
+  
   function startTrans() {
     state.transStarted = true
-
-    if (!state.transitioned && state.vidInit) {
-      splotch.advance(function(){
-        finishTransition()
-      })
-      cover.out()
-      text.in()      
-    }
+    introContent.parentNode.removeChild(introContent);
+    splotch.advance(function(){
+      finishTransition()
+    })
+    cover.out()
+    text.in()      
   }
 
-  function retractTrans() {
-    state.transStarted = false
-    if (!state.transitioned) {
-      splotch.retract()
-      cover.in()
-      text.out()
-    }
-  }
 
   function finishTransition() {
     state.transitioned = true
@@ -129,35 +74,22 @@ loader.load((loader, resources) => {
     splotch.alpha = 0
   }
   
+  function onPointerMove(eventData) {
+    var x = eventData.data.global.x;
+    var y = eventData.data.global.y;
+    text.move(x,y)
+    bg.move(x,y)
+  } 
 
   const gn = new GyroNorm();
   const debugDiv = document.getElementById('debug')
   gn.init({frequency: 200}).then(function(){
     gn.start(function(data){
-      console.log('got gyro')
-      // Process:
-      // data.do.alpha	( deviceorientation event alpha value )
-      // data.do.beta		( deviceorientation event beta value )
-      // data.do.gamma	( deviceorientation event gamma value )
-      // data.do.absolute	( deviceorientation event absolute value )
-  
-      // data.dm.x		( devicemotion event acceleration x value )
-      // data.dm.y		( devicemotion event acceleration y value )
-      // data.dm.z		( devicemotion event acceleration z value )
       const shakeVibe = Math.max(data.dm.x,data.dm.y,data.dm.z)
       debugDiv.innerHTML = shakeVibe + '<br />alpha: ' + data.do.alpha + '<br />beta: ' + data.do.beta + '<br />gamma: ' + data.do.gamma;
-
-      // data.dm.gx		( devicemotion event accelerationIncludingGravity x value )
-      // data.dm.gy		( devicemotion event accelerationIncludingGravity y value )
-      // data.dm.gz		( devicemotion event accelerationIncludingGravity z value )
-  
-      // data.dm.alpha	( devicemotion event rotationRate alpha value )
-      // data.dm.beta		( devicemotion event rotationRate beta value )
-      // data.dm.gamma	( devicemotion event rotationRate gamma value )
     });
   }).catch(function(e){
     // Catch if the DeviceOrientation or DeviceMotion is not supported by the browser or device
-    console.log('No Gyro, or Gyro no good')
     debugDiv.innerHTML = 'No Gyro, or Gyro no good'
   });
 
