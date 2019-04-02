@@ -44,14 +44,16 @@ loader.load((loader, resources) => {
 
     // .on('mousedown', initSite)
     .on('click', () => {
-      console.log('CLICK')
-      initSite()
-      startTrans()
+      if (!transitionStarted) {
+        initSite()
+        startTrans()
+      }
     })
     .on('touchstart', () => {
-      console.log('CLICK')
-      initSite()
-      startTrans()      
+      if (!transitionStarted) {
+        initSite()
+        startTrans()      
+      }
     })
     //.on('mouseup', onMouseUp)
 
