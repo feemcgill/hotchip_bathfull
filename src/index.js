@@ -47,11 +47,11 @@ loader.load((loader, resources) => {
         alert('click it')
       }
     })
-    // .on('touchstart', () => {
-    //   if (!state.transStarted) {
-    //     startTrans()      
-    //   }
-    // })
+    .on('touchstart', () => {
+      if (!state.transStarted) {
+        startTrans()      
+      }
+    })
     //.on('mouseup', onMouseUp)
 
 
