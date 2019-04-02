@@ -26,6 +26,8 @@ loader.load((loader, resources) => {
   const text = new Text()
   const cover = new Cover()
 
+  introContent.innerHTML = 'Click to enter.';
+
   theBg.addChild(bg)
   theBg.addChild(text)
   app.stage.addChild(theBg)
