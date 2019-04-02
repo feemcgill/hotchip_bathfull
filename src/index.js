@@ -44,13 +44,13 @@ loader.load((loader, resources) => {
 
     // .on('mousedown', initSite)
     .on('click', () => {
-      if (!transitionStarted) {
+      if (!state.transitionStarted) {
         initSite()
         startTrans()
       }
     })
     .on('touchstart', () => {
-      if (!transitionStarted) {
+      if (!state.transitionStarted) {
         initSite()
         startTrans()      
       }
