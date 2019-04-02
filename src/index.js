@@ -82,7 +82,7 @@ loader.load((loader, resources) => {
 
   const gn = new GyroNorm();
   const debugDiv = document.getElementById('debug')
-  gn.init({frequency: 200}).then(function(){
+  gn.init().then(function(){
     gn.start(function(data){
       const shakeVibe = Math.max(data.dm.x,data.dm.y,data.dm.z)
       debugDiv.innerHTML = shakeVibe + '<br />alpha: ' + data.do.alpha + '<br />beta: ' + data.do.beta + '<br />gamma: ' + data.do.gamma;
