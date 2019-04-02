@@ -10,12 +10,15 @@ import './vendor/gyro'
 // import { GyroNorm } from 'gyronorm';
 import GyroNorm from 'gyronorm';
 
+const introContent = document.getElementById('intro-content')
+
 
 loader.load((loader, resources) => {
   const state = {
     transitioned: false,
     transStarted: false,
     vidInit: false,
+    instructionsFollowed: false
   }
   const theBg = new PIXI.Container()
   const bg = new Bg()
@@ -41,12 +44,12 @@ loader.load((loader, resources) => {
     .on('click', () => {
       console.log('CLICK')
       initSite()
-      //startTrans()
+      startTrans()
     })
     .on('touchstart', () => {
       console.log('CLICK')
       initSite()
-      //startTrans()      
+      startTrans()      
     })
     //.on('mouseup', onMouseUp)
 
@@ -57,6 +60,9 @@ loader.load((loader, resources) => {
   let timeout = null
   function initSite() {
     if (!state.vidInit) {
+      //introContent.innerHTML = 'move your mouse to begin';
+     
+      introContent.parentNode.removeChild(introContent);
       splotch.init()
       state.vidInit = true
     }
@@ -71,14 +77,22 @@ loader.load((loader, resources) => {
     // lastmousex = x;
     // lastmousey = y;
 
-    if (!state.transStarted) {
-        startTrans()
-    }
-    clearTimeout(timeout);
-    timeout = setTimeout(function(){
-      console.log('MOUS IS IDLE')
-      retractTrans()
-    }, 100);
+    // if (!state.transStarted) {
+    //     startTrans()
+    // }
+    // if (!state.instructionsFollowed && state.vidInit) {
+    //   state.instructionsFollowed = true
+    //   setTimeout(() => {
+    //     introContent.innerHTML = 'ok';
+    //     introContent.parentNode.removeChild(introContent);
+    //   }, 1200);
+    // }
+
+    // clearTimeout(timeout);
+    // timeout = setTimeout(function(){
+    //   console.log('MOUS IS IDLE')
+    //   retractTrans()
+    // }, 100);
 
 
 
@@ -112,9 +126,9 @@ loader.load((loader, resources) => {
   }
   
 
-  const gn = new GyroNorm({frequency: 300});
+  const gn = new GyroNorm();
   const debugDiv = document.getElementById('debug')
-  gn.init().then(function(){
+  gn.init({frequency: 200}).then(function(){
     gn.start(function(data){
       console.log('got gyro')
       // Process:

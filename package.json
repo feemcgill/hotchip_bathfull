@@ -33,13 +33,14 @@
     "webpack-dev-server": "^3.1.5"
   },
   "scripts": {
-    "dev": "webpack-dev-server --mode development --env.NODE_ENV --open --hot",
+    "dev": "webpack-dev-server --mode development --env.NODE_ENV --open --hot --host 0.0.0.0",
     "build": "webpack --mode production --env.NODE_ENV"
   },
   "dependencies": {
     "gsap": "^2.0.2",
     "gyronorm": "^2.0.6",
     "matter-js": "^0.14.2",
+    "npm": "^6.9.0",
     "pixi.js": "^4.8.5"
   }
 }
