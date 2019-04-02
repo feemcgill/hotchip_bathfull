@@ -44,7 +44,6 @@ loader.load((loader, resources) => {
     .on('click', () => {
       if (!state.transStarted) {
         startTrans()
-        alert('click it')
       }
     })
     .on('touchstart', () => {
@@ -87,6 +86,9 @@ loader.load((loader, resources) => {
     gn.start(function(data){
       const shakeVibe = Math.max(data.dm.x,data.dm.y,data.dm.z)
       debugDiv.innerHTML = shakeVibe + '<br />alpha: ' + data.do.alpha + '<br />beta: ' + data.do.beta + '<br />gamma: ' + data.do.gamma;
+      text.move(data.do.gamma, data.do.beta, true)
+      bg.move(data.do.gamma, data.do.beta, true)
+
     });
   }).catch(function(e){
     // Catch if the DeviceOrientation or DeviceMotion is not supported by the browser or device

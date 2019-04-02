@@ -22,10 +22,16 @@ export default class Text extends Sprite {
     this.size()
   }
 
-  move(x, y) {
+  move(x, y, isGyro) {
     const n = .05
-    const moverX = map(x, 0, app.renderer.width, n, -n)
-    const moverY = map(y, 0, app.renderer.height, n, -n)
+    let moverX, moverY
+    if (!isGyro) {
+      moverX = map(x, 0, app.renderer.width, n, -n)
+      moverY = map(y, 0, app.renderer.height, n, -n)
+    } else {
+      moverX = map(x, -40, 40, n, -n)
+      moverY = map(y, -40, 90, n, -n)        
+    }
     this.sprite1.skew.x = moverX
     this.sprite1.skew.y = moverY
     this.sprite2.skew.x = moverY

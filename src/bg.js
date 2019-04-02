@@ -31,15 +31,23 @@ export default class Bg extends Sprite {
       .to(element, fadeTime, {alpha: 0});
   }
 
-  move(x,y) {
+  move(x,y, isGyro) {
     const appWidth = app.renderer.width
     const appHeight = app.renderer.height
     const n = appWidth * 0.05
+    let moverX, moverY, moverX2, moverY2
 
-    const moverX = map(x, 0, appWidth, (appWidth/2)+n, (appWidth/2)-n)
-    const moverY = map(y, 0, appHeight, (appHeight/2)+n, (appHeight/2)-n)
-    const moverX2 = map(x, 0, appWidth, (appWidth/2)-n, (appWidth/2)+n)
-    const moverY2 = map(y, 0, appHeight, (appHeight/2)-n, (appHeight/2)+n)
+    if (!isGyro) {
+      moverX = map(x, 0, appWidth, (appWidth/2)+n, (appWidth/2)-n)
+      moverY = map(y, 0, appHeight, (appHeight/2)+n, (appHeight/2)-n)
+      moverX2 = map(x, 0, appWidth, (appWidth/2)-n, (appWidth/2)+n)
+      moverY2 = map(y, 0, appHeight, (appHeight/2)-n, (appHeight/2)+n)  
+    } else {
+      moverX = map(x, -40, 40, (appHeight/2)-n, (appHeight/2)+n)
+      moverY = map(y, -40, 90, (appHeight/2)-n, (appHeight/2)+n)
+      moverY2 = moverX
+      moverX2 = moverY  
+    }
 
     TweenMax.to(this.sprite1, 10, {x:moverX, y:moverY})
     TweenMax.to(this.sprite2, 6, {x:moverX2, y:moverY2})
