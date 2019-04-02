@@ -24,6 +24,7 @@ export default class Text extends Sprite {
 
   move(x, y, isGyro) {
     let n = 0.07
+    let tweenTime = 0.01
     let moverX, moverY
     if (!isGyro) {
       moverX = map(x, 0, app.renderer.width, n, -n)
@@ -33,10 +34,8 @@ export default class Text extends Sprite {
       moverX = map(x, -40, 40, n, -n)
       moverY = map(y, -40, 90, n, -n)        
     }
-    this.sprite1.skew.x = moverX
-    this.sprite1.skew.y = moverY
-    this.sprite2.skew.x = moverY
-    this.sprite2.skew.y = moverX
+    TweenMax.to(this.sprite1.skew,tweenTime,{x:moverX, y:moverY})
+    TweenMax.to(this.sprite2.skew,tweenTime, {x:moverY, x:moverX})
   }
 
   in() {
@@ -51,12 +50,6 @@ export default class Text extends Sprite {
     const sizer = backgroundContain(app.renderer.width * 0.8, app.renderer.height * 0.8, this.tex1.baseTexture.width, this.tex1.baseTexture.height)
     this.sprite1.scale.set(sizer.scale)
     this.sprite2.scale.set(sizer.scale)
-
-    // this.sprite1.x = app.renderer.width / 2
-    // this.sprite1.y = app.renderer.height / 2
-
-    // this.sprite2.x = app.renderer.width / 2
-    // this.sprite2.y = app.renderer.height / 2
 
     this.x = app.renderer.width / 2
     this.y = app.renderer.height / 2

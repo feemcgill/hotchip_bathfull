@@ -47,8 +47,6 @@ export default class Bg extends Sprite {
     } else {
       moverX = map(x, -60, 60, (appWidth/2)-n, (appWidth/2)+n)
       moverY = map(y, -20, 90, (appHeight/2)-n, (appHeight/2)+n)
-      // moverY2 = moverX
-      // moverX2 = moverY  
       TweenMax.to(this.sprite1, 1, {x:moverX, y:moverY})
       TweenMax.to(this.sprite2, 0.7, {x:moverX2, y:moverY2})
     }
