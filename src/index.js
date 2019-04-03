@@ -9,6 +9,7 @@ import Cover from './cover'
 import './vendor/gyro'
 import GyroNorm from 'gyronorm'
 import './dom.js'
+import './_sass/main.scss'
 
 const introContent = document.getElementById('intro-content')
 
@@ -125,7 +126,8 @@ const app = new PIXI.Application({
   // forceCanvas : true
 });
 
-document.body.appendChild(app.view);
+
+document.getElementById('vibe-container').appendChild(app.view);
  
 
 
