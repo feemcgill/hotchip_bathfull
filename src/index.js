@@ -7,7 +7,8 @@ import Text from './text'
 import loader from './loader'
 import Cover from './cover'
 import './vendor/gyro'
-import GyroNorm from 'gyronorm';
+import GyroNorm from 'gyronorm'
+import './dom.js'
 
 const introContent = document.getElementById('intro-content')
 
@@ -24,7 +25,7 @@ loader.load((loader, resources) => {
   const text = new Text()
   const cover = new Cover()
 
-  introContent.innerHTML = 'Click to enter.';
+  // introContent.innerHTML = 'Click to enter.';
 
   theBg.addChild(bg)
   theBg.addChild(text)
@@ -81,19 +82,14 @@ loader.load((loader, resources) => {
   } 
 
   const gn = new GyroNorm();
-  const debugDiv = document.getElementById('debug')
   gn.init().then(function(){
     gn.start(function(data){
       const shakeVibe = Math.max(data.dm.x,data.dm.y,data.dm.z)
-      debugDiv.innerHTML = shakeVibe + '<br />alpha: ' + data.do.alpha + '<br />beta: ' + data.do.beta + '<br />gamma: ' + data.do.gamma;
       text.move(data.do.gamma, data.do.beta, true)
       bg.move(data.do.gamma, data.do.beta, true)
 
     });
-  }).catch(function(e){
-    // Catch if the DeviceOrientation or DeviceMotion is not supported by the browser or device
-    debugDiv.innerHTML = 'No Gyro, or Gyro no good'
-  });
+  }).catch(function(e){});
 
 
   /** RESIZE **/
