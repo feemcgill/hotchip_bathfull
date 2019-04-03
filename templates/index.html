@@ -77,7 +77,7 @@
   canvas {
     display: block;
   }
-  #loading-screen {
+#loading-screen {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -85,7 +85,7 @@
   right: 0;
   background: white;
   color: #01092e;
-  z-index: 3000;
+  z-index: 5000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -131,10 +131,14 @@
     </article>
 
     <nav class="ui-frame" id="main-nav">
-      <a href="#" onclick="openFrame(event, 'info')">Info Link</a>
-      <a href="#" onclick="openFrame(event, 'tour')">Tour Link</a>
+      <div class="nav-bg" onclick="closeFrames()"></div>
+      <div class="nav-wrap">
+        <a href="#" onclick="openFrame(event, 'info')">Info Link</a>
+        <a href="#" onclick="openFrame(event, 'tour')">Tour Link</a>
+        <div class="close-frame-link" onclick="closeFrames()"></div>
+      </div>
     </nav>
-    <a href="#" onclick="openFrame(event, 'main-nav')" id="nav-toggle">Open</a>
+    <a href="#" onclick="openFrame(event, 'main-nav')" id="nav-toggle"></a>
 
     <div id="loading-screen">
       <div class="loader-in">
@@ -147,7 +151,10 @@
 
     <div id="intro-screen">
       <div id="intro-content">
-       “RELAX. Everything is okay.”
+       <div class="txt">RELAX. Everything is okay.</div>
+       <a id="play-button">
+         <img src="./assets/img/play.svg" alt="Enter">
+       </a>
       </div>
     </div>
   </body>

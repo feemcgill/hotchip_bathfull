@@ -2,3 +2,13 @@
 @import 'info-screens';
 @import 'intro-screen';
 @import 'nav';
+
+a {
+  color: black;
+  &:hover {
+    color: fuchsia;
+  }
+  &:active {
+    color: orange;
+  }
+}

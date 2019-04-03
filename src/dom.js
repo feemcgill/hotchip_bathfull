@@ -23,8 +23,6 @@ const infoScreens = document.getElementsByTagName('article')
 for (let i = 0; i < infoScreens.length; i++) {
   const screen = infoScreens[i];
   const closeLink = document.createElement('A')
-  const linkText = document.createTextNode('Close')
-  closeLink.appendChild(linkText)
   closeLink.classList.add('close-frame-link')
   closeLink.addEventListener('click', function (e) {
     e.preventDefault()

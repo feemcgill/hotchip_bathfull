@@ -11,8 +11,8 @@ import GyroNorm from 'gyronorm'
 import './dom.js'
 import './_sass/main.scss'
 
-const introContent = document.getElementById('intro-content')
-
+const introScreen = document.getElementById('intro-screen')
+const introButton = document.getElementById('play-button')
 
 loader.load((loader, resources) => {
   const state = {
@@ -26,7 +26,11 @@ loader.load((loader, resources) => {
   const text = new Text()
   const cover = new Cover()
 
-  // introContent.innerHTML = 'Click to enter.';
+  introButton.addEventListener('click', function (e) {
+    if (!state.transStarted) {
+      startTrans()      
+    }
+  });
 
   theBg.addChild(bg)
   theBg.addChild(text)
@@ -42,25 +46,12 @@ loader.load((loader, resources) => {
     .on('mousemove', onPointerMove)
     .on('touchmove', onPointerMove)
 
-    // .on('mousedown', initSite)
-    .on('click', () => {
-      if (!state.transStarted) {
-        startTrans()
-      }
-    })
-    .on('touchstart', () => {
-      if (!state.transStarted) {
-        startTrans()      
-      }
-    })
-    //.on('mouseup', onMouseUp)
-
 
 
   
   function startTrans() {
     state.transStarted = true
-    introContent.parentNode.removeChild(introContent);
+    introScreen.parentNode.removeChild(introScreen);
     splotch.advance(function(){
       finishTransition()
     })

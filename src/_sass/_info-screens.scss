@@ -5,11 +5,28 @@ article {
   right: 30px;
   bottom: 30px;
   z-index: 2010;
-  background: pink;
+  background: purple;
+  background-image: url('./../../assets/img/bg3.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;  
   transform: scale(0);
   transition: all .2s ease-in-out;
-  overflow: scroll;  
+  overflow: scroll;
+  padding: 30px;
 }
 article.show {
   transform: scale(1)
+}
+
+.close-frame-link {
+  position: absolute;
+  top: 32px;
+  right: 32px;
+  z-index: 1900;
+  height: 36px;
+  width: 36px;
+  background-image: url('./../../assets/img/close.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;  
 }

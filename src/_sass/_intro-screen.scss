@@ -8,5 +8,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  display: none;
+  background: white;
+}
+
+#play-button {
+  display: block;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  margin-top: 50px;
 }
