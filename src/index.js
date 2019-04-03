@@ -9,7 +9,7 @@ import Cover from './cover'
 import './vendor/gyro'
 import GyroNorm from 'gyronorm'
 import './dom.js'
-import './_sass/main.scss'
+// import './_sass/main.scss'
 
 const introScreen = document.getElementById('intro-screen')
 const introButton = document.getElementById('play-button')
@@ -44,19 +44,22 @@ loader.load((loader, resources) => {
   app.stage.interactive = true;
   app.stage
     .on('mousemove', onPointerMove)
-    .on('touchmove', onPointerMove)
+    // .on('touchmove', onPointerMove)
 
 
 
   
   function startTrans() {
     state.transStarted = true
-    introScreen.parentNode.removeChild(introScreen);
-    splotch.advance(function(){
-      finishTransition()
-    })
-    cover.out()
-    text.in()      
+    TweenMax.to(introScreen, 1.5, {opacity: 0, delay: 0, onComplete:() => {
+      introScreen.parentNode.removeChild(introScreen);
+      splotch.advance(function(){
+        finishTransition()
+      })
+      cover.out()
+      text.in()        
+    }})    
+    
   }
 
 
@@ -64,6 +67,7 @@ loader.load((loader, resources) => {
     state.transitioned = true
     theBg.mask = null
     splotch.alpha = 0
+    document.body.classList.add('intro-animation-complete')
   }
   
   function onPointerMove(eventData) {

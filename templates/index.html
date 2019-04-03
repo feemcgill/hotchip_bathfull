@@ -84,7 +84,7 @@
   left: 0;
   right: 0;
   background: white;
-  color: #01092e;
+  color: black;
   z-index: 5000;
   display: flex;
   align-items: center;
@@ -92,10 +92,12 @@
   text-align: center;
 }
 #loader-track {
-  width: 300px;
-  height: 2px;
-  background: #e4c69f;
-  position: relative;
+  width: 100%;
+  height: 12px;
+  background: #ccc;
+  position: fixed;
+  bottom: 0;
+  left: 0;
 }
 #loader-bar {
   position: absolute;
@@ -103,7 +105,7 @@
   bottom: 0;
   left: 0;
   width: 0%;
-  background: #01092e;
+  background: black;
   transition: all .2s ease-out;
 }
 
@@ -115,6 +117,41 @@
   right: 0;
   z-index: 100;
 }
+
+#intro-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+}
+.intro-txt {
+  font-size: 36px;
+}
+
+#play-button {
+  display: block;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  margin-top: 50px;
+  transition: all .2s ease-out;
+  transform: scale(1);
+  cursor: pointer;
+  text-align: center;
+}
+.enter-txt {
+  margin-top:20px;
+}
+#play-button:hover {
+  transform: scale(0.9)
+}
+
 </style>
         
   <body>
@@ -123,7 +160,7 @@
 
     <div id="loading-screen">
       <div class="loader-in">
-        <h2>Loading</h2>
+        <h2>Loading...</h2>
         <div id="loader-track">
           <div id="loader-bar"></div>
         </div>
@@ -132,9 +169,10 @@
 
     <div id="intro-screen">
       <div id="intro-content">
-       <div class="txt">RELAX. Everything is okay.</div>
+       <div class="intro-txt">RELAX. Everything is okay.</div>
        <a id="play-button">
          <img src="./assets/img/play.svg" alt="Enter">
+         <div class="enter-txt">Enter</div>
        </a>
       </div>
     </div>
