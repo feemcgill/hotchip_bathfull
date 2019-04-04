@@ -24,8 +24,8 @@ export default class Bg extends Sprite {
     this.fade()
   }
   fade() {
-    const delayTime = 1
-    const fadeTime = 2
+    const delayTime = 10
+    const fadeTime = 20
     const element = this.sprite2
     const tl = new TimelineMax({repeat: -1, repeatDelay: delayTime, delay: delayTime});
     tl
