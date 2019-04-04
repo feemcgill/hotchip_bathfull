@@ -9,21 +9,17 @@ export default class Bg extends Sprite {
     super()  
     this.tex = new PIXI.Texture.fromImage(loader.resources.bg.url)
     this.sprite1 = new PIXI.Sprite(this.tex)
-    this.tex2 = new PIXI.Texture.fromImage(loader.resources.bg2.url)
+    this.tex2 = new PIXI.Texture.fromImage(loader.resources.bg3.url)
     this.sprite2 = new PIXI.Sprite(this.tex2)
-    this.borderTex = new PIXI.Texture.fromImage(loader.resources.border.url)
-    this.borderSprite = new PIXI.Sprite(this.borderTex)
-    this.borderSprite.x = 20
-    this.borderSprite.y = 20
+
     
     this.sprite1.anchor.set(0.5)
     this.sprite2.anchor.set(0.5)
     //this.anchor.set(0.5)
     //this.addChild(this.sprite1)
     this.addChild(this.sprite2)
-    //this.addChild(this.borderSprite)
 
-    this.sprite2.alpha = 1
+    // this.sprite2.alpha = 1
     this.size()
     //this.fade()
   }
@@ -75,9 +71,6 @@ export default class Bg extends Sprite {
 
     this.sprite2.x = app.renderer.width / 2
     this.sprite2.y = app.renderer.height / 2
-
-    this.borderSprite.width = app.renderer.width - 40
-    this.borderSprite.height = app.renderer.height - 40
   }
 }
 
