@@ -35,24 +35,24 @@ export default class Bg extends Sprite {
   }
 
   move(x,y, isGyro) {
-    const appWidth = app.renderer.width
-    const appHeight = app.renderer.height
-    let n = appWidth * 0.05
-    let moverX, moverY, moverX2, moverY2
+    // const appWidth = app.renderer.width
+    // const appHeight = app.renderer.height
+    // let n = appWidth * 0.05
+    // let moverX, moverY, moverX2, moverY2
 
-    if (!isGyro) {
-      moverX = map(x, 0, appWidth, (appWidth/2)+n, (appWidth/2)-n)
-      moverY = map(y, 0, appHeight, (appHeight/2)+n, (appHeight/2)-n)
-      moverX2 = map(x, 0, appWidth, (appWidth/2)-n, (appWidth/2)+n)
-      moverY2 = map(y, 0, appHeight, (appHeight/2)-n, (appHeight/2)+n)
-      TweenMax.to(this.sprite1, 10, {x:moverX, y:moverY})
-      TweenMax.to(this.sprite2, 6, {x:moverX2, y:moverY2})
-    } else {
-      moverX = map(x, -60, 60, (appWidth/2)-n, (appWidth/2)+n)
-      moverY = map(y, -20, 90, (appHeight/2)-n, (appHeight/2)+n)
-      TweenMax.to(this.sprite1, 1, {x:moverX, y:moverY})
-      TweenMax.to(this.sprite2, 0.7, {x:moverX2, y:moverY2})
-    }
+    // if (!isGyro) {
+    //   moverX = map(x, 0, appWidth, (appWidth/2)+n, (appWidth/2)-n)
+    //   moverY = map(y, 0, appHeight, (appHeight/2)+n, (appHeight/2)-n)
+    //   moverX2 = map(x, 0, appWidth, (appWidth/2)-n, (appWidth/2)+n)
+    //   moverY2 = map(y, 0, appHeight, (appHeight/2)-n, (appHeight/2)+n)
+    //   TweenMax.to(this.sprite1, 10, {x:moverX, y:moverY})
+    //   TweenMax.to(this.sprite2, 6, {x:moverX2, y:moverY2})
+    // } else {
+    //   moverX = map(x, -60, 60, (appWidth/2)-n, (appWidth/2)+n)
+    //   moverY = map(y, -20, 90, (appHeight/2)-n, (appHeight/2)+n)
+    //   TweenMax.to(this.sprite1, 1, {x:moverX, y:moverY})
+    //   TweenMax.to(this.sprite2, 0.7, {x:moverX2, y:moverY2})
+    // }
 
 
   }
@@ -63,8 +63,8 @@ export default class Bg extends Sprite {
     this.sprite1.scale.set(sizer.scale)
     this.sprite2.scale.set(sizer.scale)
 
-    TweenMax.killTweensOf(this.sprite1);
-    TweenMax.killTweensOf(this.sprite2, {x:true, y:true});
+    // TweenMax.killTweensOf(this.sprite1);
+    // TweenMax.killTweensOf(this.sprite2, {x:true, y:true});
 
     this.sprite1.x = app.renderer.width / 2
     this.sprite1.y = app.renderer.height / 2
