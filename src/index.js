@@ -9,7 +9,6 @@ import Cover from './cover'
 import './vendor/gyro'
 import GyroNorm from 'gyronorm'
 import './dom.js'
-// import './_sass/main.scss'
 
 const introScreen = document.getElementById('intro-screen')
 const introButton = document.getElementById('play-button')
@@ -46,8 +45,7 @@ loader.load((loader, resources) => {
   app.stage.interactive = true;
   app.stage
     .on('mousemove', onPointerMove)
-    // .on('touchmove', onPointerMove)
-
+    .on('touchmove', onPointerMove)
 
 
   
