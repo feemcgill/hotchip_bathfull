@@ -63,8 +63,8 @@ export default class Bg extends Sprite {
     this.sprite1.scale.set(sizer.scale)
     this.sprite2.scale.set(sizer.scale)
 
-    // TweenMax.killTweensOf(this.sprite1);
-    // TweenMax.killTweensOf(this.sprite2, {x:true, y:true});
+    TweenMax.killTweensOf(this.sprite1);
+    TweenMax.killTweensOf(this.sprite2, {x:true, y:true});
 
     this.sprite1.x = app.renderer.width / 2
     this.sprite1.y = app.renderer.height / 2
