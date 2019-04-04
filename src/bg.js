@@ -19,11 +19,11 @@ export default class Bg extends Sprite {
     this.sprite1.anchor.set(0.5)
     this.sprite2.anchor.set(0.5)
     //this.anchor.set(0.5)
-    this.addChild(this.sprite1)
+    //this.addChild(this.sprite1)
     this.addChild(this.sprite2)
     //this.addChild(this.borderSprite)
 
-    this.sprite2.alpha = 0.8
+    this.sprite2.alpha = 1
     this.size()
     //this.fade()
   }
