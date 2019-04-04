@@ -130,8 +130,12 @@
   justify-content: center;
   background: white;
 }
+#intro-content {
+  text-align: center;
+  padding: 20px;
+}
 .intro-txt {
-  font-size: 36px;
+  font-size: 30px;
 }
 
 #play-button {
@@ -144,6 +148,7 @@
   transform: scale(1);
   cursor: pointer;
   text-align: center;
+  opacity: 0;
 }
 .enter-txt {
   margin-top:20px;
@@ -151,7 +156,13 @@
 #play-button:hover {
   transform: scale(0.9)
 }
-
+@media only screen and (max-width: 700px) {
+  #play-button {
+    width: 75px;
+    height: 75px;
+    margin-top: 20px;
+  }
+}
 </style>
         
   <body>
@@ -169,7 +180,7 @@
 
     <div id="intro-screen">
       <div id="intro-content">
-       <div class="intro-txt">RELAX. Everything is okay.</div>
+       <div class="intro-txt">RELAX.<br /> Everything is okay.</div>
        <a id="play-button">
          <img src="./assets/img/play.svg" alt="Enter">
          <div class="enter-txt">Enter</div>
