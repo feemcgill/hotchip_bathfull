@@ -45,7 +45,7 @@ loader.load((loader, resources) => {
   app.stage.interactive = true;
   app.stage
     .on('mousemove', onPointerMove)
-    .on('touchmove', onPointerMove)
+    .on('touchmove', onTouchMove)
 
 
   
@@ -82,13 +82,18 @@ loader.load((loader, resources) => {
     bg.move(x,y)
   } 
 
+
+  function onTouchMove(eventData) {
+    var x = eventData.data.global.x;
+    var y = eventData.data.global.y;
+    text.move(x,y)
+  } 
+
   const gn = new GyroNorm();
   gn.init().then(function(){
     gn.start(function(data){
       const shakeVibe = Math.max(data.dm.x,data.dm.y,data.dm.z)
-      text.move(data.do.gamma, data.do.beta, true)
       bg.move(data.do.gamma, data.do.beta, true)
-
     });
   }).catch(function(e){});
 
@@ -130,7 +135,7 @@ const app = new PIXI.Application({
 
 document.getElementById('vibe-container').appendChild(app.view);
  
-const videoTex = new PIXI.Texture.fromVideo(loader.resources.splotch.url);
+const videoTex = new PIXI.Texture.fromVideo('./../assets/vid/splotchy.mp4');
 const vid = videoTex.baseTexture
 vid.source.loop = false
 vid.autoPlay = false

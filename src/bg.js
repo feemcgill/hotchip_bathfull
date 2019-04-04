@@ -97,9 +97,11 @@ export default class Bg extends Sprite {
 
       } else {
         moverX = map(x, -60, 60, (appWidth/2)-n, (appWidth/2)+n)
-        moverY = map(y, -20, 90, (appHeight/2)-n, (appHeight/2)+n)
-        TweenMax.to(this.sprite1, 0.2, {x:moverX, y:moverY})
-        TweenMax.to(this.sprite2, 0.5, {x:moverX, y:moverY})
+        moverY = map(y, -60, 90, (appHeight/2)-n, (appHeight/2)+n)
+        moverX2 = map(x,  -60, 60, (appWidth/2)-n, (appWidth/2)+n)
+        moverY2 = map(y, -60, 90, (appHeight/2)-n, (appHeight/2)+n)        
+        TweenMax.to(this.sprite1, 2, {x:moverX, y:moverY})
+        TweenMax.to(this.sprite2, 5, {x:moverX2, y:moverY2})
       }
     }
   }
