@@ -9,19 +9,19 @@ export default class Bg extends Sprite {
     super()  
     this.tex = new PIXI.Texture.fromImage(loader.resources.bg.url)
     this.sprite1 = new PIXI.Sprite(this.tex)
-    this.tex2 = new PIXI.Texture.fromImage(loader.resources.bg3.url)
-    this.sprite2 = new PIXI.Sprite(this.tex)
+    this.tex2 = new PIXI.Texture.fromImage(loader.resources.bg2.url)
+    this.sprite2 = new PIXI.Sprite(this.tex2)
 
     
     this.sprite1.anchor.set(0.5)
     this.sprite2.anchor.set(0.5)
-    //this.anchor.set(0.5)
-    //this.addChild(this.sprite1)
+    this.anchor.set(0.5)
+    this.addChild(this.sprite1)
     this.addChild(this.sprite2)
 
-    // this.sprite2.alpha = 1
+    this.sprite2.alpha = 1
     this.size()
-    //this.fade()
+    this.fade()
   }
   fade() {
     const delayTime = 1
@@ -50,8 +50,8 @@ export default class Bg extends Sprite {
     } else {
       moverX = map(x, -60, 60, (appWidth/2)-n, (appWidth/2)+n)
       moverY = map(y, -20, 90, (appHeight/2)-n, (appHeight/2)+n)
-      TweenMax.to(this.sprite1, 1, {x:moverX, y:moverY})
-      //TweenMax.to(this.sprite2, 0.7, {x:moverX2, y:moverY2})
+      TweenMax.to(this.sprite1, 0.2, {x:moverX, y:moverY})
+      TweenMax.to(this.sprite2, 0.5, {x:moverX, y:moverY})
     }
   }
 
