@@ -10,7 +10,7 @@ export default class Bg extends Sprite {
     this.tex = new PIXI.Texture.fromImage(loader.resources.bg.url)
     this.sprite1 = new PIXI.Sprite(this.tex)
     this.tex2 = new PIXI.Texture.fromImage(loader.resources.bg3.url)
-    this.sprite2 = new PIXI.Sprite(this.tex2)
+    this.sprite2 = new PIXI.Sprite(this.tex)
 
     
     this.sprite1.anchor.set(0.5)
