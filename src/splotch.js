@@ -2,19 +2,15 @@ import { Graphics, Sprite, Container} from 'pixi.js'
 
 import {TweenMax} from "gsap/TweenMax"
 import {backgroundSize, map, backgroundContain} from './helpers'
-import {app} from './index'
+import {app, videoTex} from './index'
 import loader from './loader'
 
 export default class Splotch extends Sprite {
   constructor(callback) {
     super()
-    this.vidTex = new PIXI.Texture.fromVideo(loader.resources.splotch.url);
+    this.vidTex = videoTex
     this.texture = this.vidTex
     this.vid = this.texture.baseTexture
-    this.vid.source.loop = false
-    this.vid.autoPlay = false
-    this.vid.source.autoplay = false
-    this.vid.source.muted = true
     this.anchor.set(0.5)
     this.size()
 
@@ -30,8 +26,6 @@ export default class Splotch extends Sprite {
    this.vid.source.play()
    this.vid.source.onended = () => {
      callback()
-    //  this.vid.source.loop = true
-    //  this.vid.source.play()
    }
   }
 

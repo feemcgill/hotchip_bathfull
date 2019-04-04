@@ -56,14 +56,11 @@ const backgroundSize = function(containerW, containerH, imgW, imgH) {
         // new dims must be contaier heigh
         newDims.h = containerH;
         newDims.w = containerH * imgRatio;
-        console.log('Image is 100% wide and shorter than container')
     } else {
         // Image is 100% wide and taller than container
         newDims.w = containerW;
         newDims.h = containerW / imgRatio;
-        console.log('Image is 100% wide and taller than container')
     }
-    console.log(containerW, containerH, imgW, imgH)
     newDims.scale = newDims.w / imgW;
     return newDims;    
 }
@@ -75,19 +72,10 @@ const backgroundContain = function(containerW, containerH, imgW, imgH) {
         scale: null
     };
     const imgRatio = imgW / imgH;
-    if (containerW / imgRatio < containerH) {
-        // Image is 100% wide and shorter than container
-        // new dims must be contaier heigh
-        // newDims.h = containerH;
-        // newDims.w = containerH * imgRatio;
-        
+    if (containerW / imgRatio < containerH) {        
         newDims.w = containerW;
         newDims.h = containerW * imgRatio;
     } else {
-        // Image is 100% wide and taller than container
-        // newDims.w = containerW;
-        // newDims.h = containerW / imgRatio;
-
         newDims.h = containerH
         newDims.w = containerH * imgRatio
     }

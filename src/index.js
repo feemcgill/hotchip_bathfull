@@ -53,11 +53,11 @@ loader.load((loader, resources) => {
     state.transStarted = true
     TweenMax.to(introScreen, 0, {opacity: 0, delay: 0, onComplete:() => {
       introScreen.parentNode.removeChild(introScreen);
-      splotch.advance(function(){
-        finishTransition()
-
+      splotch.advance(() => {
+        if (!state.transitioned) {
+          finishTransition()          
+        }
       })
-
       cover.out()
       text.in()        
     }})    
@@ -69,13 +69,9 @@ loader.load((loader, resources) => {
     state.transitioned = true
     theBg.mask = null
     splotch.alpha = 0
-    bg.init()
-
-    // splotch.blendMode = PIXI.BLEND_MODES.ADD
-    // bg2 = new Bg()
-    // app.stage.addChild(bg2)
-    // bg2.mask = splotch
-    // bg2.alpha = 0.3
+    setTimeout(() => {
+      bg.init()
+    }, 10000);
     document.body.classList.add('intro-animation-complete')
   }
   
@@ -128,14 +124,19 @@ const app = new PIXI.Application({
   height: window.innerHeight,
   backgroundColor : 0xFFFFFF,
   antialias: true,
-  //forceCanvas : true
+  // forceCanvas : true
 });
 
 
 document.getElementById('vibe-container').appendChild(app.view);
  
+const videoTex = new PIXI.Texture.fromVideo(loader.resources.splotch.url);
+const vid = videoTex.baseTexture
+vid.source.loop = false
+vid.autoPlay = false
+vid.source.autoplay = false
+vid.source.muted = true
 
-
-export {app}
+export {app, videoTex}
 
 

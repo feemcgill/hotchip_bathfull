@@ -1,66 +1,46 @@
 import {Sprite} from 'pixi.js'
 import {TweenMax, TimelineMax} from "gsap/TweenMax"
 import {backgroundSize, map} from './helpers'
-import {app} from './index'
+import {app, videoTex} from './index'
 import loader from './loader'
 
 export default class Bg extends Sprite {
   constructor(callback) {
     super()
     this.state = {
-      transitioning: false
+      transitioning: false,
+      webGl: true
     }
     this.tex = new PIXI.Texture.fromImage(loader.resources.bg.url)
     this.sprite1 = new PIXI.Sprite(this.tex)
     this.tex2 = new PIXI.Texture.fromImage(loader.resources.bg2.url)
     this.sprite2 = new PIXI.Sprite(this.tex2)
 
-    this.vidTex = new PIXI.Texture.fromVideo(loader.resources.splotch.url);
-    this.vidSprite = new PIXI.Sprite(this.vidTex)
-
-    this.vid = this.vidSprite.texture.baseTexture
-    this.vid.source.loop = false
-    this.vid.autoPlay = false
-    this.vid.source.autoplay = false
-    this.vid.source.muted = true
     this.sprite1.anchor.set(0.5)
     this.sprite2.anchor.set(0.5)
-    this.vidSprite.anchor.set(0.5)
 
     this.anchor.set(0.5)
     this.addChild(this.sprite1)
     this.addChild(this.sprite2)
 
     this.sprite2.alpha = 0
-    this.size()
 
     if(app.renderer instanceof PIXI.CanvasRenderer) { 
       this.fade()
-    }
-
-    //this.fade()
-
-    this.vid.source.onended = () => {
-      setTimeout(() => {
-        this.state.transitioning = true
-        TweenMax.to(this.sprite1, 3, {x:app.renderer.width / 2, y:app.renderer.height / 2})
-        TweenMax.to(this.sprite2, 3, {x:app.renderer.width / 2, y:app.renderer.height / 2})
+      this.state.webGl = false
+    } else {
+      this.vidTex = videoTex
+      this.vidSprite = new PIXI.Sprite(this.vidTex)
   
-        TweenMax.to(this.sprite2,0.5,{alpha:0, delay: 3, onComplete:()=> {
-          this.vid.source.currentTime = 0
-          this.vid.source.play()
-          this.sprite2.texture = this.sprite2.texture == this.tex ? this.tex2 : this.tex
-          TweenMax.to(this.sprite2, 0.5, {alpha:1, onComplete:() => {
-            this.state.transitioning = false
-          }})
-        }})
-        this.sprite1.texture = this.sprite1.texture == this.tex ? this.tex2 : this.tex        
-      }, 10000);
+      this.vid = this.vidSprite.texture.baseTexture
+      // this.vid.source.loop = false
+      // this.vid.autoPlay = false
+      // this.vid.source.autoplay = false
+      // this.vid.source.muted = true
 
+      this.vidSprite.anchor.set(0.5)
     }
-
-    this.vid.source.playbackRate = 1
-
+    this.size()
   }
   fade() {
     const delayTime = 10
@@ -74,10 +54,30 @@ export default class Bg extends Sprite {
   }
 
   init() {
-    this.addChild(this.vidSprite)
+    if (this.state.webGl) {
+      this.addChild(this.vidSprite)
+      this.sprite2.mask = this.vidSprite
+      this.vid.source.playbackRate = 2
+      this.vid.source.play()
+      this.vid.source.onended = () => {
+        setTimeout(() => {
+          this.state.transitioning = true
+          TweenMax.to(this.sprite1, 3, {x:app.renderer.width / 2, y:app.renderer.height / 2})
+          TweenMax.to(this.sprite2, 3, {x:app.renderer.width / 2, y:app.renderer.height / 2})
+          TweenMax.to(this.sprite2,0.5,{alpha:0, delay: 3, onComplete:()=> {
+            this.vid.source.currentTime = 0
+            this.vid.source.play()
+            this.sprite2.texture = this.sprite2.texture == this.tex ? this.tex2 : this.tex
+            TweenMax.to(this.sprite2, 0.5, {alpha:1, onComplete:() => {
+              this.state.transitioning = false
+            }})
+          }})
+          this.sprite1.texture = this.sprite1.texture == this.tex ? this.tex2 : this.tex        
+        }, 10000);
+  
+      }        
+    }
     TweenMax.to(this.sprite2,0.5,{alpha:1})
-    this.sprite2.mask = this.vidSprite
-    this.vid.source.play()
   }
 
   move(x,y, isGyro) {
@@ -106,12 +106,12 @@ export default class Bg extends Sprite {
 
 
   size() {
-    const vidSize = backgroundSize(app.renderer.width, app.renderer.height, 1280, 720)
-    
-    this.vidSprite.scale.set(vidSize.scale)
-
-    this.vidSprite.x = app.renderer.width / 2
-    this.vidSprite.y = app.renderer.height / 2
+    if (this.state.webGl) {
+      const vidSize = backgroundSize(app.renderer.width, app.renderer.height, 1280, 720)
+      this.vidSprite.scale.set(vidSize.scale)
+      this.vidSprite.x = app.renderer.width / 2
+      this.vidSprite.y = app.renderer.height / 2      
+    }
 
     const sizer = backgroundSize(app.renderer.width * 1.2 , app.renderer.height * 1.2 , this.tex.baseTexture.width, this.tex.baseTexture.height)
     

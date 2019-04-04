@@ -23,8 +23,8 @@ export default class Text extends Sprite {
   }
 
   move(x, y, isGyro) {
-    let n = 0.07
-    let tweenTime = 0.01
+    let n = 0.04
+    let tweenTime = 0.05
     let moverX, moverY
     if (!isGyro) {
       moverX = map(x, 0, app.renderer.width, n, -n)

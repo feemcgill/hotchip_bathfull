@@ -8,6 +8,10 @@ export default class Splotch extends Graphics {
     this.beginFill(0xFFFFFF)
     this.size()
     this.alpha = 1
+    this.fadeOutTime = 0.3
+    if(app.renderer instanceof PIXI.CanvasRenderer) { 
+      this.fadeOutTime = 3
+    }    
   }
 
   in() {
@@ -15,7 +19,7 @@ export default class Splotch extends Graphics {
   }
 
   out() {
-    TweenMax.to(this, 0.3, {alpha: 0, delay: 0.2})
+    TweenMax.to(this, this.fadeOutTime, {alpha: 0, delay: 0.2})
   }
 
   size() {
