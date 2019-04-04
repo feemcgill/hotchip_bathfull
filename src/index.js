@@ -32,16 +32,16 @@ loader.load((loader, resources) => {
     }
   });
 
-  TweenMax.to(introButton, 3, {opacity: 1, delay: 1})
+  TweenMax.to(introButton,3, {opacity: 1, delay: 1})
 
   theBg.addChild(bg)
-  //theBg.addChild(text)
+  theBg.addChild(text)
   app.stage.addChild(theBg)
 
-  //app.stage.addChild(splotch)
-  //app.stage.addChild(cover)
+  app.stage.addChild(splotch)
+  app.stage.addChild(cover)
 
-  //theBg.mask = splotch
+  theBg.mask = splotch
 
   app.stage.interactive = true;
   app.stage
