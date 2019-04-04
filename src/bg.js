@@ -23,9 +23,9 @@ export default class Bg extends Sprite {
     this.addChild(this.sprite2)
     //this.addChild(this.borderSprite)
 
-    this.sprite2.alpha = 0
+    this.sprite2.alpha = 0.8
     this.size()
-    this.fade()
+    //this.fade()
   }
   fade() {
     const delayTime = 1
