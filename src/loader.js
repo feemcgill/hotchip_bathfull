@@ -21,6 +21,7 @@ loader
   .add('text_1', text_1)
   .add('text_2', text_2)
   .add('splotch','./../assets/vid/splotchy.mp4')
+  .add('blot','./../assets/vid/blot.mp4')
 
 
 

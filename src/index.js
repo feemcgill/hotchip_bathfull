@@ -51,11 +51,13 @@ loader.load((loader, resources) => {
   
   function startTrans() {
     state.transStarted = true
-    TweenMax.to(introScreen, 1.5, {opacity: 0, delay: 0, onComplete:() => {
+    TweenMax.to(introScreen, 0, {opacity: 0, delay: 0, onComplete:() => {
       introScreen.parentNode.removeChild(introScreen);
       splotch.advance(function(){
         finishTransition()
+
       })
+
       cover.out()
       text.in()        
     }})    
@@ -67,6 +69,13 @@ loader.load((loader, resources) => {
     state.transitioned = true
     theBg.mask = null
     splotch.alpha = 0
+    bg.init()
+
+    // splotch.blendMode = PIXI.BLEND_MODES.ADD
+    // bg2 = new Bg()
+    // app.stage.addChild(bg2)
+    // bg2.mask = splotch
+    // bg2.alpha = 0.3
     document.body.classList.add('intro-animation-complete')
   }
   
@@ -118,7 +127,8 @@ const app = new PIXI.Application({
   width: window.innerWidth,
   height: window.innerHeight,
   backgroundColor : 0xFFFFFF,
-  // forceCanvas : true
+  antialias: true,
+  //forceCanvas : true
 });
 
 
