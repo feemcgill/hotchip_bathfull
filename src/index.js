@@ -129,6 +129,7 @@ const app = new PIXI.Application({
   height: window.innerHeight,
   backgroundColor : 0xFFFFFF,
   antialias: true,
+  resolution: 2
   // forceCanvas : true
 });
 
