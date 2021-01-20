@@ -40,7 +40,7 @@
     "build": "webpack --mode production --env.NODE_ENV"
   },
   "dependencies": {
-    "gsap": "^2.0.2",
+    "gsap": "^3.6.0",
     "gyronorm": "^2.0.6",
     "matter-js": "^0.14.2",
     "npm": "^6.9.0",
